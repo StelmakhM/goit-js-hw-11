@@ -53,6 +53,7 @@ async function onLoadMoreBtnClick() {
     const photos = await pixabay.fetchPhotos();
     const { hits, totalHits } = photos.data;
     createMarkUp(hits);
+    smoothScroll();
     if (totalHits / 40 < pixabay.page) {
       refs.loadMoreBtn.classList.add('is-hidden');
       Notiflix.Notify.info(
@@ -80,4 +81,15 @@ function createLightBox() {
     captionsData: 'alt',
     captionDelay: 250,
   }));
+}
+
+function smoothScroll() {
+  const { height: cardHeight } = document
+    .querySelector('.gallery')
+    .firstElementChild.getBoundingClientRect();
+
+  window.scrollBy({
+    top: cardHeight * 1.6,
+    behavior: 'smooth',
+  });
 }
