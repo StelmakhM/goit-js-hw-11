@@ -33,7 +33,9 @@ async function onFormSubmit(e) {
     }
     Notiflix.Notify.info(`Hooray! We found ${totalHits} images.`);
     createMarkUp(hits);
-    refs.loadMoreBtn.classList.remove('is-hidden');
+    if (totalHits > 40) {
+      refs.loadMoreBtn.classList.remove('is-hidden');
+    }
   } catch (error) {
     console.log(error);
   }
@@ -59,7 +61,7 @@ function createMarkUp(arrayOfPhotos) {
 }
 
 function checkQuery(searchQuery) {
-  pixabay.query = searchQuery;
+  pixabay.query = searchQuery.toLowerCase().trim();
   if (!pixabay.query) {
     Notiflix.Notify.info(`Please, enter search query ;)`);
     return;
@@ -69,4 +71,5 @@ function checkQuery(searchQuery) {
 function refreshMarkUp() {
   pixabay.page = 1;
   refs.gallery.innerHTML = '';
+  refs.loadMoreBtn.classList.add('is-hidden');
 }
