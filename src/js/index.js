@@ -26,6 +26,7 @@ async function onFormSubmit(e) {
     return;
   }
   refreshMarkUp();
+  createLightBox();
   try {
     const photos = await pixabay.fetchPhotos();
     const { hits, totalHits } = photos.data;
@@ -64,10 +65,6 @@ async function onLoadMoreBtnClick() {
 }
 
 function createMarkUp(arrayOfPhotos) {
-  lightbox = new SimpleLightbox('.gallery a', {
-    captionsData: 'alt',
-    captionDelay: 250,
-  });
   refs.gallery.insertAdjacentHTML('beforeend', photosTemplate(arrayOfPhotos));
   lightbox.refresh();
 }
@@ -76,4 +73,11 @@ function refreshMarkUp() {
   pixabay.page = 1;
   refs.gallery.innerHTML = '';
   refs.loadMoreBtn.classList.add('is-hidden');
+}
+
+function createLightBox() {
+  return (lightbox = new SimpleLightbox('.gallery a', {
+    captionsData: 'alt',
+    captionDelay: 250,
+  }));
 }
