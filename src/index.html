@@ -8,17 +8,23 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <form class="search-form" id="search-form">
-      <input
-        type="text"
-        name="searchQuery"
-        autocomplete="off"
-        placeholder="Search images..."
-      />
-      <button type="submit">Search</button>
-    </form>
-    <div class="gallery"></div>
-    <button type="button" class="js-load-more">LOAD MORE</button>
+    <div class="container">
+      <form class="search-form" id="search-form">
+        <input
+          type="text"
+          name="searchQuery"
+          autocomplete="off"
+          placeholder="Search images..."
+        />
+        <button type="submit">
+          <img src="./images/loupe.png" alt="" width="50" />
+        </button>
+      </form>
+      <div class="gallery"></div>
+      <button type="button" class="load-more is-hidden js-load-more">
+        Load more
+      </button>
+    </div>
     <script src="js/index.js" type="module"></script>
   </body>
 </html>
