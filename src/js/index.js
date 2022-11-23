@@ -38,7 +38,7 @@ async function onFormSubmit(e) {
     }
     Notiflix.Notify.info(`Hooray! We found ${totalHits} images.`);
     createMarkUp(hits);
-    if (totalHits > 39) {
+    if (totalHits > pixabay.per_page) {
       refs.loadMoreBtn.classList.remove('is-hidden');
     }
   } catch (error) {
@@ -54,7 +54,7 @@ async function onLoadMoreBtnClick() {
     const { hits, totalHits } = photos.data;
     createMarkUp(hits);
     smoothScroll();
-    if (totalHits / 39 < pixabay.page) {
+    if (totalHits / pixabay.per_page < pixabay.page) {
       refs.loadMoreBtn.classList.add('is-hidden');
       Notiflix.Notify.info(
         "We're sorry, but you've reached the end of search results."
